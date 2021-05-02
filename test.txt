@@ -1,0 +1,162 @@
+#importando ferramenta de análise de dados Pandas
+import pandas as pd
+
+#lendo os arquivos csv
+confirmados = pd.read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv") 
+recuperados = pd.read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv")
+mortos = pd.read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv")
+
+#imprimindo dados do arquivos csv - casos confirmados de COVID19
+confirmados
+
+#imprimindo dados do arquivos csv - recuperados do COVID19
+recuperados
+
+#imprimindo dados do arquivos csv - mortos do COVID19
+mortos
+
+#descobrindo o formato da tabela do arquivos csv - casos confirmados de COVID19 (linhas x colunas)
+confirmados.shape
+
+#descobrindo o formato da tabela do arquivos csv - recuperados do COVID19 (linhas x colunas)
+recuperados.shape
+
+#descobrindo o formato da tabela do arquivos csv - mortos por COVID19 (linhas x colunas)
+mortos.shape
+
+#imprimindo somente os 5 primeiros dados do arquivos csv - casos confirmados do COVID19
+confirmados.head()
+
+#imprimindo somente os 5 primeiros dados do arquivos csv - recuperados do COVID19
+recuperados.head()
+
+#imprimindo somente os 5 primeiros dados do arquivos csv - mortos por COVID19
+mortos.head()
+
+#imprimindo somente a coluna referente a última data atualizada dos dados do arquivos csv - casos confirmados por COVID19
+ultima_data_atualizada = "4/10/21"
+confirmados.head()[ultima_data_atualizada]
+
+#imprimindo somente a coluna referente a última data atualizada dos dados do arquivos csv - recuperados do COVID19
+ultima_data_atualizada = "4/10/21"
+recuperados.head()[ultima_data_atualizada]
+
+#imprimindo somente a coluna referente a última data atualizada dos dados do arquivos csv - mortos por COVID19
+ultima_data_atualizada = "4/10/21"
+mortos.head()[ultima_data_atualizada]
+
+#imprimindo somente a coluna "Country/Region" dos dados do arquivos csv - casos confirmados por COVID19
+confirmados["Country/Region"]
+
+#imprimindo somente a coluna "Country/Region" dos dados do arquivos csv - recuperados do COVID19
+recuperados["Country/Region"]
+
+#imprimindo somente a coluna "Country/Region" dos dados do arquivos csv - mortos por COVID19
+mortos["Country/Region"]
+
+#extraindo / imprimindo somente valores únicos da coluna "Country/Region" dos dados do arquivos csv - casos confirmados por COVID19
+confirmados["Country/Region"].unique()
+
+#extraindo / imprimindo somente valores únicos da coluna "Country/Region" dos dados do arquivos csv - recuperados do COVID19
+recuperados["Country/Region"].unique()
+
+#extraindo / imprimindo somente valores únicos da coluna "Country/Region" dos dados do arquivos csv - mortos por COVID19
+mortos["Country/Region"].unique()
+
+#imprimindo somente a coluna "Province/State" dos dados do arquivos csv - casos confirmados por COVID19
+confirmados["Province/State"]
+
+#imprimindo somente a coluna "Province/State" dos dados do arquivos csv - recuperados do COVID19
+recuperados["Province/State"]
+
+#imprimindo somente a coluna "Province/State" dos dados do arquivos csv - mortos por COVID19
+mortos["Province/State"]
+
+#extraindo / imprimindo somente valores únicos da coluna "Province/State" dos dados do arquivos csv - casos confirmados por COVID19
+confirmados["Province/State"].unique()
+
+#extraindo / imprimindo somente valores únicos da coluna "Province/State" dos dados do arquivos csv - recuperados do COVID19
+recuperados["Province/State"].unique()
+
+#extraindo / imprimindo somente valores únicos da coluna "Province/State" dos dados do arquivos csv - mortos por COVID19
+mortos["Province/State"].unique()
+
+#extraindo / imprimindo 20 elementos (amostra aleatória) de casos dos dados do arquivos csv - casos confirmados por COVID19
+confirmados.sample(20)
+
+#extraindo / imprimindo 20 elementos (amostra aleatória) de casos dos dados do arquivos csv - recuperados do COVID19
+recuperados.sample(20)
+
+#extraindo / imprimindo 20 elementos (amostra aleatória) de casos dos dados do arquivos csv - mortos por COVID19
+mortos.sample(20)
+
+#tomando decisões - extraindo / imprimindo somente uma linha específica (linha 0) dos dados do arquivos csv - casos confirmados por COVID19
+confirmados.iloc[0]
+
+#tomando decisões - extraindo / imprimindo somente uma linha específica (linha 0) dos dados do arquivos csv - recuperados do COVID19
+recuperados.iloc[0]
+
+#tomando decisões - extraindo / imprimindo somente uma linha específica (linha 0) dos dados do arquivos csv - mortos por COVID19
+mortos.iloc[0]
+
+#Agrupando o resultado
+confirmados_por_pais = confirmados.groupby("Country/Region")
+confirmados_por_pais.head()
+
+#Agrupando o resultado
+recuperados_por_pais = recuperados.groupby("Country/Region")
+recuperados_por_pais.head()
+
+#Agrupando o resultado
+mortos_por_pais = mortos.groupby("Country/Region")
+mortos_por_pais.head()
+
+#Após agrupar o resultado, mostrando os 5 primeiros (ordem alfabética) e filtrando pela última data com atualização
+ultima_data_atualizada = "4/10/21" 
+confirmados_por_pais = confirmados.groupby("Country/Region")[ultima_data_atualizada].sum()
+confirmados_por_pais.head()
+
+#Após agrupar o resultado, mostrando os 5 primeiros (ordem alfabética) e filtrando pela última data com atualização
+ultima_data_atualizada = "4/10/21" 
+recuperados_por_pais = recuperados.groupby("Country/Region")[ultima_data_atualizada].sum()
+recuperados_por_pais.head()
+
+#Após agrupar o resultado, mostrando os 5 primeiros (ordem alfabética) e filtrando pela última data com atualização
+ultima_data_atualizada = "4/10/21" 
+mortos_por_pais = mortos.groupby("Country/Region")[ultima_data_atualizada].sum()
+mortos_por_pais.head()
+
+#Após agrupar o resultado, mostrando os 10 paises aleatóriamente e filtrando pela última data com atualização
+ultima_data_atualizada = "4/10/21" 
+confirmados_por_pais = confirmados.groupby("Country/Region")[ultima_data_atualizada].sum()
+confirmados_por_pais.sample(10)
+
+#Após agrupar o resultado, mostrando os 10 paises aleatóriamente e filtrando pela última data com atualização
+ultima_data_atualizada = "4/10/21" 
+recuperados_por_pais = recuperados.groupby("Country/Region")[ultima_data_atualizada].sum()
+recuperados_por_pais.sample(10)
+
+#Após agrupar o resultado, mostrando os 10 paises aleatóriamente e filtrando pela última data com atualização
+ultima_data_atualizada = "4/10/21" 
+mortos_por_pais = mortos.groupby("Country/Region")[ultima_data_atualizada].sum()
+mortos_por_pais.sample(10)
+
+#Após agrupar o resultado, mostrando um pais específico e filtrando pela última data com atualização
+ultima_data_atualizada = "4/10/21" 
+confirmados_por_pais = confirmados.groupby("Country/Region")[ultima_data_atualizada].sum()
+confirmados_por_pais.loc["Brazil"]
+
+#Após agrupar o resultado, mostrando um pais específico e filtrando pela última data com atualização
+ultima_data_atualizada = "4/10/21" 
+recuperados_por_pais = recuperados.groupby("Country/Region")[ultima_data_atualizada].sum()
+recuperados_por_pais.loc["Brazil"]
+
+#Após agrupar o resultado, mostrando um pais específico e filtrando pela última data com atualização
+ultima_data_atualizada = "4/10/21" 
+mortos_por_pais = mortos.groupby("Country/Region")[ultima_data_atualizada].sum()
+mortos_por_pais.loc["Brazil"]
+
+confirmados.set_index("Country/Region").iloc
+confir
+
+
